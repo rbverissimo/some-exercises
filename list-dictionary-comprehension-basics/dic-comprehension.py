@@ -24,3 +24,26 @@ for n in numbers:
 
 # the same result could be achieved by implementing the following
 new_dict_comp = {n: n ** 2 for n in numbers if n % 2 == 0}  # much simpler to read
+
+# converting fahrenheit temperatures to celsius using lamb
+f = {'t1': -30,
+     't2': -10,
+     't3': 98,
+     't4': 64}
+
+# creating a list with the values provided by the f dictionary
+celsius = list(map(lambda x: (float(5)/9) * (x-32), f.values()))
+# float returns a float provided by number or string, if nothing is passed it fucking returns 0.0
+
+# returning a dict that combines each element of the dict to the celsius list
+c_dict = dict(zip(f.keys(), celsius))
+print(c_dict)
+
+# the same solution for the same problem using Dict Comp
+
+f_comp = {'t1': 0, 't2': 100}
+# iterate over two variables k, v, put keeping k as is and modifying v using the formula
+c_comp = {k: (float(5)/9) * (v - 32) for (k, v) in f_comp.items()}
+print("\nUsing dict comprehension: \n", c_comp)
+
+
