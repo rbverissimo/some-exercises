@@ -58,7 +58,17 @@ print("\nUsing conditionals to create this dict: ", dict2)
 dict3 = {k: v for (k, v) in dict1.items() if v > 2 if v % 2 == 0}
 print("\nA new dict was created using double conditional: ", dict3)
 
-#if-else
+# if-else
+dict4 = {k: ('even' if v % 2 == 0 else 'odd') for (k, v) in dict1.items()}
+print("\ndict4 is replacing the numbers for words in dict1 using an if-else statement for values: ", dict4)
+
+# nested dict: a dict may contain multiple other dicts inside
+nested = {'first_d': {'a': 1, 'b': 2}, 'second_d': {'c': 3, 'd': 4}}
+
+# this next operation gonna convert from int to float looping through the nested dicts
+dict5 = {outer_k: {float(inner_v) for (inner_k, inner_v) in outer_v.items()}
+         for (outer_k, outer_v) in nested.items()}
+print("\nConverting nested dicts from int to float: ", dict5)
 
 
 
