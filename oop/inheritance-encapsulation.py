@@ -1,6 +1,6 @@
 class Guitar:
-    def __init__(self):
-        self.n_strings = 6
+    def __init__(self, n_strings=6):  # default value to be passed in init
+        self.n_strings = n_strings
         self.play()  # it will automatically call this method whenever an instance is initialized
 
     def play(self):
@@ -17,14 +17,17 @@ class Guitar:
 
 class ElectricGuitar(Guitar):
     def __init__(self):
-        self.n_strings = 8
-        self.play()  # using this method without taking it from the super()
+        super().__init__(n_strings=8)  # we can passe the value in the init for a new value in class
+        self.color = ("#000000", "#FFFFFF")  # black and white in hex, specializing the class
+        self.__cost = 50  # __ before a attribute or namespace in general means it is "private"
 
 
 class BassGuitar(Guitar):
     def __init__(self):
-        super().__init__()  # it will first initialize attributes and methods biased by that parent class
-        self.n_strings = 4
+        super().__init__(n_strings=4)  # it will first initialize attributes and methods biased by that parent class
+
+    def __make_6_strings(self):
+        self.n_strings = 6
 
 
 if __name__ == '__main__':
@@ -37,3 +40,12 @@ if __name__ == '__main__':
 
     print("\nJust got an 8-stringed guitar:")
     my_8_strings = ElectricGuitar()
+
+    print("\nPrivate attributes may be accessed in Python: ")
+    print(my_8_strings._ElectricGuitar__cost)  # and this is the way to do: with an underscore before the class
+
+    print("\nLet's change our Bass number of strings using a 'private' method:")
+    print(my_bass.details())
+    my_bass._BassGuitar__make_6_strings()
+    print(my_bass.details())
+
